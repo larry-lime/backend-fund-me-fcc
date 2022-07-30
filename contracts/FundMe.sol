@@ -12,7 +12,7 @@ error FundMe_NotOwner();
 // Interfaces, Libraries, Contracts
 /// @title A contract for crowd funding
 /// @author Lawrence Lim
-/// @notice This contract is teo demo a sample funding contract
+/// @notice This contract is to demo a sample funding contract
 /// @dev This implements price feeds as our library
 contract FundMe {
     // Type declarations
@@ -46,14 +46,6 @@ contract FundMe {
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
         priceFeed = AggregatorV3Interface(priceFeedAddress);
-    }
-
-    receive() external payable {
-        fund();
-    }
-
-    fallback() external payable {
-        fund();
     }
 
     function fund() public payable {

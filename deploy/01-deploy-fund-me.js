@@ -1,15 +1,12 @@
+const { getNamedAccounts, deployments, network } = require("hardhat")
 const { networkConfig, developmentChains } = require("../helper-hardhat-config")
-const { network } = require("hardhat")
-const {verify} = require("../utils/verify")
+const { verify } = require("../utils/verify")
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy, log } = deployments
   const { deployer } = await getNamedAccounts()
   const chainId = network.config.chainId
 
-  // if chainID is x use address Y
-  // if chainID is A use address C
-  // const ethUsdPriceFeedAddress = networkConfig[chainID]["ethUsdPriceFeed"]
   let ethUsdPriceFeedAddress
   if (developmentChains.includes(network.name)) {
     const ethUsdPriceAggregator = await deployments.get("MockV3Aggregator")
@@ -34,3 +31,5 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   }
   log("------------------------------------------")
 }
+
+module.exports.tags = ["all", "fundme"]
