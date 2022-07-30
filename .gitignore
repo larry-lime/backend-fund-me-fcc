@@ -4,6 +4,7 @@ coverage
 coverage.json
 typechain
 typechain-types
+deployments
 
 #Hardhat files
 cache
@@ -11,5 +12,6 @@ artifacts
 
 #Other
 Session.vim
+gas-report.txt
 yarn-error.log
 yarn.lock
