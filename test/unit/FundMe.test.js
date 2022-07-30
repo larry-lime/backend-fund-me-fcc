@@ -48,9 +48,9 @@ describe('FundMe', () => {
       const startingFundMeBalance = await fundMe.provider.getBalance(
         fundMe.address
       )
-      const startingDeployerBalance = await fundMe.providergetBalance(deployer)
+      const startingDeployerBalance = await fundMe.provider.getBalance(deployer)
       // Act
-      const transactionResponse = await fundme.withdraw()
+      const transactionResponse = await fundMe.withdraw()
       const transactionReceipt = await transactionResponse.wait(1)
       const { gasUsed, effectiveGasPrice } = transactionReceipt
       const gasCost = gasUsed.mul(effectiveGasPrice)
@@ -64,6 +64,27 @@ describe('FundMe', () => {
         startingFundMeBalance.add(startingDeployerBalance),
         endingDeployerBalance.add(gasCost).toString()
       )
+    })
+    it('allows us to withdraw with multiple funders', async () => {
+      const accounts = await ethers.getSigners()
+      for (let i = 1; i < 6; i++) {
+        const fundMeConnectedContract = await fundMe.connect(accounts[i])
+        await fundMeConnectedContract.fund({ value: sendValue })
+      }
+      const startingFundMeBalance = await fundMe.provider.getBalance(
+        fundMe.address
+      )
+      const startingDeployerBalance = await fundMe.provider.getBalance(deployer)
+
+      // Act
+      const transactionResponse = await fundMe.withdraw()
+      const transactionReceipt = await transactionResponse.wait(1)
+      const { gasUsed, effectiveGasPrice } = transactionReceipt
+      const gasCost = gasUsed.mul(effectiveGasPrice)
+
+      // Make sure that the funders are reset properly
+      await expect(fundMe.funders(0)).to.be.reverted
+      for (i = 1; i < 6; i++) assert.equal(await fundMe.addressToAmountFunded)
     })
   })
 })
