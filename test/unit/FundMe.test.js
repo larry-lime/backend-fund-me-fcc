@@ -66,8 +66,9 @@ describe('FundMe', () => {
       )
     })
     it('allows us to withdraw with multiple funders', async () => {
+      // Arrange
       const accounts = await ethers.getSigners()
-      for (let i = 1; i < 6; i++) {
+      for (i = 1; i < 6; i++) {
         const fundMeConnectedContract = await fundMe.connect(accounts[i])
         await fundMeConnectedContract.fund({ value: sendValue })
       }
@@ -84,7 +85,19 @@ describe('FundMe', () => {
 
       // Make sure that the funders are reset properly
       await expect(fundMe.funders(0)).to.be.reverted
-      for (i = 1; i < 6; i++) assert.equal(await fundMe.addressToAmountFunded)
+
+      for (i = 1; i < 6; i++) {
+        assert.equal(await fundMe.addressToAmountFunded(accounts[i].address), 0)
+      }
+    })
+    it('Only allows the owner to withdraw', async () => {
+      const accounts = await ethers.getSigners()
+      const attacker = accounts[1]
+      const attackerConnectedContract = await fundMe.connect(attacker)
+      // TODO Fix this! This does not work -> I fixed this but did not use error codes
+      await expect(
+        attackerConnectedContract.withdraw()
+      ).to.be.revertedWithCustomError(fundMe, 'FundMe__NotOwner')
     })
   })
 })

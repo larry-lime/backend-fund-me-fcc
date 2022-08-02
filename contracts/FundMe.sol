@@ -7,7 +7,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
 
 // Error Codes
-error FundMe_NotOwner();
+error FundMe__NotOwner();
 
 // Interfaces, Libraries, Contracts
 /// @title A contract for crowd funding
@@ -28,8 +28,8 @@ contract FundMe {
 
     // Events and modifiers
     modifier onlyOwner() {
-        // require(msg.sender == owner);
-        if (msg.sender != i_owner) revert FundMe_NotOwner();
+        // if (msg.sender != i_owner) revert('Not Owner');
+        if (msg.sender != i_owner) revert FundMe__NotOwner();
         _;
     }
 
