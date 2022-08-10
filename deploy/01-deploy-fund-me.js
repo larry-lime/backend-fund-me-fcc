@@ -1,6 +1,6 @@
-const { getNamedAccounts, deployments, network } = require("hardhat")
-const { networkConfig, developmentChains } = require("../helper-hardhat-config")
-const { verify } = require("../utils/verify")
+const { getNamedAccounts, deployments, network } = require('hardhat')
+const { networkConfig, developmentChains } = require('../helper-hardhat-config')
+const { verify } = require('../utils/verify')
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy, log } = deployments
@@ -9,15 +9,15 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
   let ethUsdPriceFeedAddress
   if (developmentChains.includes(network.name)) {
-    const ethUsdPriceAggregator = await deployments.get("MockV3Aggregator")
+    const ethUsdPriceAggregator = await deployments.get('MockV3Aggregator')
     ethUsdPriceFeedAddress = ethUsdPriceAggregator.address
   } else {
-    ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    ethUsdPriceFeedAddress = networkConfig[chainId]['ethUsdPriceFeed']
   }
 
   // When going for localhost or hardhat network, use mocks
   const args = [ethUsdPriceFeedAddress]
-  const fundMe = await deploy("FundMe", {
+  const fundMe = await deploy('FundMe', {
     from: deployer,
     args: args, // put pricefeed address
     log: true,
@@ -29,7 +29,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   ) {
     await verify(fundMe.address, args)
   }
-  log("------------------------------------------")
+  log('------------------------------------------')
 }
 
-module.exports.tags = ["all", "fundme"]
+module.exports.tags = ['all', 'fundme']
