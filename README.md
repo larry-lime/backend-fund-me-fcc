@@ -7,7 +7,6 @@ This project is a crowd funding smart contract built with hardhat.
 Try running some of the following tasks:
 
 Run tests:
-To 
 ```shell
 yarn test
 ```
