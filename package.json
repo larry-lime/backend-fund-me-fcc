@@ -1,7 +1,8 @@
 {
   "name": "hardhat-fund-me-fcc",
-  "author": "lawrence lim",
   "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
   "devDependencies": {
     "@chainlink/contracts": "^0.4.1",
     "@ethersproject/abi": "^5.4.7",
@@ -34,5 +35,5 @@
     "lint:fix": "yarn solhint 'contracts/*.sol' --fix",
     "format": "yarn prettier --write .",
     "coverage": "yarn hardhat coverage"
-  },
+  }
 }
