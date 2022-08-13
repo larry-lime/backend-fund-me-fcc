@@ -10,6 +10,7 @@ require('hardhat-deploy')
 const RINKEBY_RPC_URL =
   process.env.RINKEBY_RPC_URL || 'https://eth-rinkeby/example'
 const PRIVATE_KEY = process.env.PRIVATE_KEY || '0xkey'
+const COINMKTCAP_API_KEY = process.env.COINMKTCAP_API_KEY
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || 'key'
 
 module.exports = {
@@ -37,7 +38,7 @@ module.exports = {
     currency: 'USD',
     outputFile: 'gas-report.txt',
     noColors: true,
-    // coinmarketcap: COINMARKETCAP_API_KEY,
+    coinmarketcap: COINMKTCAP_API_KEY,
   },
   namedAccounts: {
     deployer: {
