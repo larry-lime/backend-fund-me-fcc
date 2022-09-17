@@ -1,12 +1,54 @@
-# Hardhat FundMe
+# Smart Contract Lottery
 
-## About this Project
+## About The Project
 
-This project is a crowd funding smart contract project built with hardhat
+My Ethereum Crowd Funding project is full stack decentralized application built who's [backend](https://github.com/larry-lime/fund-me-backend) is built with Solidity and the Hardhat Ethereum development framework. Tests are done with Mocha & Chai in Javascript. Additionally, it utilizes Chainlink pricefeed oracles and its [frontend](https://github.com/larry-lime/solidity-js-fcc) is coded in vanilla HTML/CSS and Javascript. This project was created as a part of Patrick Collin's Solidity and Javascript smart contract course with Free Code Camp.
 
-Try running some of the following tasks:
+## Getting Started
 
-Run tests:
+### Prerequisites
+
+* [yarn](https://classic.yarnpkg.com/lang/en/docs/install/)
+* [metamask](https://metamask.io/download/) 
+* [live-server](https://www.npmjs.com/package/live-server) 
+
+### Installation
+
+1. Clone the repo (backend)
 ```shell
-yarn test
+git clone https://github.com/larry-lime/fund-me-backend.git
 ```
+2. Run yarn
+```shell
+cd fund-me-backend && yarn
+```
+
+## Usage
+
+####  Deploy to local blockchain
+  ```shell
+  yarn hardhat deploy
+  ```
+####  Run tests
+  ```shell
+  yarn hardhat test
+  ```
+####  Test Coverage
+  ```shell
+  yarn hardhat deploy
+  ```
+####  Interact with frontend
+  1. Spin-up node
+  ```shell
+  yarn hardhat node
+  ```
+  2. Git clone frontend repo
+  ```shell
+  git clone https://github.com/larry-lime/solidity-js-fcc.git
+  cd fund-me-html
+  ```
+  3. Start live-server
+  ```shell
+  npx live-server
+  ```
+
