@@ -1,4 +1,6 @@
 # Ethereum Crowd Funding – Full Stack Solidity & JavaScript DApp
+
+⛔️ Project is DEPRICATED and no longer maintained ⛔️
 <!--Add blurb at the top-->
 <!--Add a demo video-->
 ## About The Project
